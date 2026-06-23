@@ -129,6 +129,7 @@ RIWAYAT_SKOR = [
     {"nama": "Siti_Informatika", "kategori": "Tebak Code Python", "level": 1, "skor": 90}
 ]
 
+# ini fungsi  untuk menu utama nya
 def tampilkan_menu_utama():
     print("\n" + "="*50)
     print("           IT-INSIGHT MINI QUIZ")
@@ -145,11 +146,13 @@ def tampilkan_menu_utama():
             return pilihan
         print("[Peringatan] Pilihan tidak valid!")
 
+# ini fungsi untuk menghitung total skor rekursif yang akan ditampilkan leaerboard
 def hitung_total_skor_rekursif(daftar_riwayat, indeks=0):
     if indeks >= len(daftar_riwayat):
         return 0
     return daftar_riwayat[indeks]["skor"] + hitung_total_skor_rekursif(daftar_riwayat, indeks + 1)
 
+# fungsi pembuatan leader board
 def tampilkan_leaderboard():
     print("\n" + "="*60)
     print("         PAPAN PERINGKAT UTAMA (LEADERBOARD)")
@@ -371,6 +374,7 @@ def jalankan_gameplay(nama_user, kategori, level_target):
         
     return "LULUS" if lulus else "GAGAL"
 
+# fungsi untuk menawarkan pilihan mau lanjut ke level berikutnya atau kembali ke halaman utama
 def navigasi_setelah_kuis(status_hasil, level_aktif):
     if level_aktif == 3 and status_hasil == "LULUS":
         print("\n[1] Kembali ke Halaman Utama")
@@ -395,7 +399,7 @@ def navigasi_setelah_kuis(status_hasil, level_aktif):
             if opsi == "1": return "ULANG"
             if opsi == "2": return "HOME"
             print("Input tidak valid!")
-# ini adalah code inti program ini 
+# ini adalah code inti program ini dimana system ini akan berjalan saat mulai pertama kali
 def main():
     while True:
         menu_pilihan = tampilkan_menu_utama()
