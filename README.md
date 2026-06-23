@@ -1,62 +1,81 @@
-# Mini_Quiz_App_tugas_akhhir_AlgoritmaPemrograman
+# IT-Insight Mini Quiz
 
-# Sistem Perpustakaan Mini UAI
+## Deskripsi
 
----
-
-## Deskripsi Proyek
-
-**Sistem Perpustakaan Mini UAI** adalah sebuah aplikasi berbasis antarmuka konsol (CLI) yang dikembangkan menggunakan bahasa pemrograman Python. Sistem ini dirancang secara khusus untuk memfasilitasi dan mengelola operasional perpustakaan skala kecil secara digital. Aplikasi ini merupakan luaran dari proyek akhir untuk mata kuliah Algoritma dan Pemrograman di Universitas Al Azhar Indonesia, yang bertujuan untuk mendemonstrasikan pemahaman praktis mengenai struktur data, algoritma dasar, dan manajemen file.
+Aplikasi capstone berbasis Command Line Interface (CLI) menggunakan bahasa Python bernama "IT-Insight Mini Quiz". Proyek ini dikembangkan untuk mengatasi masalah utama pelajar IT, yaitu kesenjangan teori hafalan vs praktik logika (*The Theory-Practice Gap*) dan kurangnya media evaluasi mandiri rendah tekanan (*Low-Stakes Self-Assessment*). Sistem ini mengelompokkan bank soal ke dalam 2 kategori besar dengan mekanika tingkat kesulitan berbasis pengetatan jumlah nyawa (Level 1: 4 nyawa, Level 2: 3 nyawa, Level 3: 1 nyawa). Target penggunanya adalah siswa/mahasiswa rumpun Teknologi Informasi (Pelajar IT) tingkat pemula yang ingin mengasah wawasan IT serta keterampilan pemrograman mereka, sekaligus membutuhkan alat ukur kesiapan pemahaman logika program khususnya Python.
 
 ---
 
 ## Fitur Utama
 
-Aplikasi ini mencakup serangkaian fungsionalitas inti untuk manajemen perpustakaan modern:
+### 1. Fitur Wajib
 
-* **Manajemen Katalog:** Kemampuan untuk menambah buku baru ke dalam pangkalan data atau menghapus buku yang sudah tidak relevan.
-* **Mesin Pencari:** Fitur pencarian presisi yang memungkinkan pengguna menemukan buku berdasarkan *Judul*, *Pengarang*, atau *Kategori*.
-* **Sirkulasi Buku:** Sistem otomatisasi untuk mencatat transaksi peminjaman dan pengembalian buku, lengkap dengan pembaruan status ketersediaan.
-* **Dasbor Statistik:** Representasi metrik komprehensif mengenai kondisi perpustakaan, seperti total buku, buku yang dipinjam, dan buku yang tersedia.
-* **Penyimpanan Persisten:** Data katalog tidak akan hilang ketika program ditutup karena seluruh rekaman transaksi dan katalog disimpan secara otomatis ke dalam file lokal.
+* 
+**Bank Soal:** Basis data penyimpanan soal multi-level yang menampung teks pertanyaan, pilihan ganda, dan kunci jawaban secara terstruktur.
 
----
 
-## Panduan Menjalankan Program
+* 
+**Quiz Random:** Sistem pengacakan otomatis untuk urutan kemunculan soal maupun opsi pilihan jawaban (A, B, C, D) agar setiap sesi kuis yang dimainkan tetap dinamis.
 
-Aplikasi ini dirancang agar mudah dieksekusi di lingkungan *cloud* maupun lokal. Berikut adalah panduan menjalankan program menggunakan **Google Colab**:
 
-1. Buka *platform* Google Colab melalui *browser* Anda.
-2. Unggah file `main.py` ke dalam sistem *file* penyimpanan *session* Colab Anda.
-3. Buat sebuah sel (*cell*) baru dan jalankan perintah: `!python main.py`
-4. Sebagai alternatif, Anda dapat menyalin (*copy*) seluruh kode sumber dan menempelkannya (*paste*) langsung ke dalam sel eksekusi Colab untuk dijalankan secara langsung.
+* 
+**Scoring (Kalkulasi Nilai):** Perhitungan skor akhir level secara otomatis berbasis persentase total jawaban yang benar setelah sesi kuis selesai.
 
----
 
-## Arsitektur Sistem
+* **Papan Peringkat (Leaderboard):** Fitur untuk menyusun, mengurutkan, dan menampilkan peringkat utama para pemain berdasarkan perolehan skor tertinggi.
+* **Review Jawaban:** Fasilitas pasca-kuis untuk melihat kembali evaluasi lembar jawaban pemain dan mencocokkannya secara langsung dengan kunci jawaban yang benar.
 
-Pengembangan aplikasi ini didasarkan pada implementasi spesifik dari struktur data dan algoritma berikut untuk memastikan efisiensi ruang dan waktu:
+### 2. Fitur Tambahan
 
-### Struktur Data
+* 
+**Sistem Nyawa (Lives):** Mekanika simulasi tekanan yang membatasi toleransi kesalahan pemain berdasarkan tingkat kesulitan level (Level 1: 4 nyawa, Level 2: 3 nyawa, Level 3: 1 nyawa).
 
-* **Katalog Utama:** Menggunakan struktur *Dictionary* dengan kompleksitas waktu akses yang cepat, di mana `key` adalah `id_buku` dan `value` berupa objek `data_buku`.
-* **Entitas Buku:** Setiap buku direpresentasikan sebagai *Dictionary* terpisah yang menyimpan atribut detail berupa `judul`, `pengarang`, `tahun`, dan `status`.
 
-### Algoritma
+* 
+**Fitur Kategori dan Perlevelan:** Sistem manajemen soal yang membagi kuis ke dalam 2 kategori utama (Wawasan Umum IT dan Tebak Code & Output Python) serta memetakan materi secara simetris ke dalam 3 tingkatan kesulitan (Level 1, 2, dan 3).
 
-* **Pencarian Data:** Mengimplementasikan algoritma *Linear Search* untuk melakukan iterasi pencarian dan pencocokan parameter string (judul, pengarang, kategori) secara berurutan di dalam katalog.
-* **Pengurutan Data:** Memanfaatkan fungsi *Built-in Sort* dari Python yang sangat teroptimasi untuk menyusun dan menampilkan daftar katalog perpustakaan secara alfabetis atau kronologis.
+
 
 ---
 
-## Identitas Pengembang
+## Cara Menjalankan
 
-| Informasi | Keterangan |
-| --- | --- |
-| **Nama** | [Nama Anda] |
-| **NIM** | [NIM Anda] |
-| **Mata Kuliah** | Algoritma dan Pemrograman (3 SKS) |
-| **Dosen Pengampu** | Tri Aji Nugroho, S.T., M.T. |
-| **Semester** | Genap 2025/2026 |
-| **Institusi** | Universitas Al Azhar Indonesia |
+1. Buka Google Colab
+2. Upload file utama Python ke dalam penyimpanan *session*
+3. Jalankan kode program langsung pada *cell* Colab
 
+---
+
+## Struktur Data
+
+* 
+**Katalog Soal:** Menggunakan *Dictionary multi-level* (Nested Dictionary) dengan pencarian konstan $O(1)$ berdasarkan pencocokan *key-value* dari input menu pengguna.
+
+
+* **Riwayat Skor:** Menggunakan *List of Dictionary* untuk menampung seluruh data hasil pengerjaan kuis (nama, kategori, level, dan skor akhir).
+* **Kategori:** Menggunakan objek *Set* untuk membuang elemen duplikat secara otomatis dalam pengelolaan daftar pilihan kategori.
+
+---
+
+## Algoritma yang Digunakan
+
+* **Bubble Sort:** Digunakan untuk mengurutkan data riwayat skor secara menurun (*descending*) guna menyusun papan peringkat secara rapi.
+* **Total Skor (Rekursi):** Menggunakan fungsi rekursif fungsional untuk menghitung akumulasi total nilai keseluruhan pemain yang terdata di dalam sistem.
+* **Option Shuffling:** Mengacak urutan pilihan opsi jawaban di dalam dictionary kuis secara dinamis tanpa mengubah kunci jawaban asli.
+* 
+**Manipulasi ASCII:** Pelacakan sandi enkripsi kriptografi pergeseran bit karakter (Sandi Caesar) memanfaatkan fungsi `ord()` dan `chr()`.
+
+
+
+---
+
+## Identitas
+
+* **Nama**: [Nama Anda]
+* **NIM**: [NIM Anda]
+* 
+**Mata Kuliah**: Praktikum Fondasi Pemrograman - Media Evaluasi Mandiri Pelajar IT 
+
+
+* **Dosen**: Tri Aji Nugroho, S.T., M.T.
+* **Semester**: Genap 2025/2026
