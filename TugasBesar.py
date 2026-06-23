@@ -10,6 +10,8 @@ import random  # Mengimport modul random untuk pengacakan soal dan opsi
 
 # 1. STRUKTUR DATA UTAMA: NESTED DICTIONARY (DATABASE SOAL)
 # Catatan: Prefix pilihan (A, B, C, D) dihapus dari data mentah agar bisa diacak secara dinamis.
+
+# dictionary untuk menaruh soal" dan jawaban
 BANK_SOAL = {
     "General IT Knowledge": {
         "Level 1": [
@@ -393,7 +395,7 @@ def navigasi_setelah_kuis(status_hasil, level_aktif):
             if opsi == "1": return "ULANG"
             if opsi == "2": return "HOME"
             print("Input tidak valid!")
-
+# ini adalah code inti program ini 
 def main():
     while True:
         menu_pilihan = tampilkan_menu_utama()
