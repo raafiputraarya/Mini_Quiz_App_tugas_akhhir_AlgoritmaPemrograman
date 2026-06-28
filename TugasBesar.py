@@ -1,17 +1,15 @@
 # =================================================================
 # PROYEK AKHIR ALGORITMA DAN PEMROGRAMAN - UNIVERSITAS AL AZHAR INDONESIA
-# NAMA PROGRAM : IT-INSIGHT MINI QUIZ (DYNAMIC OPTIONS & RANDOMIZED EDITION)
+# NAMA PROGRAM : IT-INSIGHT MINI QUIZ (IN-PLACE DICTIONARY SHUFFLING)
 # STRUKTUR DATA: DICTIONARY (O(1) ACCESS), LIST OF DICT (RIWAYAT), SET (KATEGORI)
 # ALGORITMA: BUBBLE SORT (SORTING), TOTAL SKOR (REKURSI), OPTION SHUFFLING
 # =================================================================
 
 import sys
-import random  # Mengimport modul random untuk pengacakan soal dan opsi
+import random
+
 
 # 1. STRUKTUR DATA UTAMA: NESTED DICTIONARY (DATABASE SOAL)
-# Catatan: Prefix pilihan (A, B, C, D) dihapus dari data mentah agar bisa diacak secara dinamis.
-
-# dictionary untuk menaruh soal" dan jawaban
 BANK_SOAL = {
     "General IT Knowledge": {
         "Level 1": [
@@ -27,7 +25,7 @@ BANK_SOAL = {
             {"pertanyaan": "Apakah fungsi utama dari perangkat keras bernama Monitor?", "pilihan": ["Menyimpan Data", "Menampilkan Visual", "Memproses Logika", "Mencetak Teks"], "jawaban": "Menampilkan Visual"}
         ],
         "Level 2": [
-            {"pertanyaan": "Memori super cepat yang menjembatani CPU dan RAM adalah...", "pilihan": ["SSD", "Cache Memory", "ROM", "Flashdisk"], "jawaban": "Cache Memory"},
+            {"pertanyaan": "Memori super cepat yang menjembatani CPU and RAM adalah...", "pilihan": ["SSD", "Cache Memory", "ROM", "Flashdisk"], "jawaban": "Cache Memory"},
             {"pertanyaan": "Algoritma page replacement yang menghapus halaman paling lama tidak diakses adalah...", "pilihan": ["FIFO", "LRU (Least Recently Used)", "LFU", "Random"], "jawaban": "LRU (Least Recently Used)"},
             {"pertanyaan": "Algoritma page replacement yang menghapus halaman berdasarkan frekuensi paling sedikit dipakai adalah...", "pilihan": ["FIFO", "LFU (Least Frequently Used)", "LRU", "Optimal"], "jawaban": "LFU (Least Frequently Used)"},
             {"pertanyaan": "Algoritma substitusi halaman memori yang memakai prinsip masuk-pertama keluar-pertama adalah...", "pilihan": ["LRU", "FIFO (First In First Out)", "LFU", "LIFO"], "jawaban": "FIFO (First In First Out)"},
@@ -123,13 +121,9 @@ BANK_SOAL = {
 
 KATEGORI_SET = set(BANK_SOAL.keys())
 
-# DATABASE RIWAYAT LEADERBOARD GLOBAL
-RIWAYAT_SKOR = [
-    {"nama": "Ahmad_UAI", "kategori": "General IT Knowledge", "level": 3, "skor": 85},
-    {"nama": "Siti_Informatika", "kategori": "Tebak Code Python", "level": 1, "skor": 90}
-]
+# DATA DUMMY DIKOSONGKAN AGAR LEADERBOARD SESUAI DENGAN USER YANG SEDANG BERMAIN
+RIWAYAT_SKOR = []
 
-# ini fungsi  untuk menu utama nya
 def tampilkan_menu_utama():
     print("\n" + "="*50)
     print("           IT-INSIGHT MINI QUIZ")
@@ -146,18 +140,16 @@ def tampilkan_menu_utama():
             return pilihan
         print("[Peringatan] Pilihan tidak valid!")
 
-# ini fungsi untuk menghitung total skor rekursif yang akan ditampilkan leaerboard
 def hitung_total_skor_rekursif(daftar_riwayat, indeks=0):
     if indeks >= len(daftar_riwayat):
         return 0
     return daftar_riwayat[indeks]["skor"] + hitung_total_skor_rekursif(daftar_riwayat, indeks + 1)
 
-# fungsi pembuatan leader board
 def tampilkan_leaderboard():
     print("\n" + "="*60)
     print("         PAPAN PERINGKAT UTAMA (LEADERBOARD)")
     print("="*60)
-    
+
     if not RIWAYAT_SKOR:
         print("Belum ada riwayat pengerjaan kuis.")
         print("="*60)
@@ -165,41 +157,40 @@ def tampilkan_leaderboard():
 
     data_sort = list(RIWAYAT_SKOR)
     n = len(data_sort)
-    
+
+    # Algoritma Bubble Sort
     for i in range(n):
         for j in range(0, n - i - 1):
             if data_sort[j]["skor"] < data_sort[j+1]["skor"]:
                 data_sort[j], data_sort[j+1] = data_sort[j+1], data_sort[j]
-                
+
     print(f"{'Rank':<6} | {'Nama Pemain':<16} | {'Kategori':<22} | {'Lvl':<4} | {'Skor':<5}")
     print("-"*65)
     for rank, data in enumerate(data_sort, 1):
         print(f"#{rank:<5} | {data['nama']:<16} | {data['kategori']:<22} | Lvl {data['level']:<1} | {data['skor']:<5}")
     print("-"*65)
-    
+
     total_akumulasi = hitung_total_skor_rekursif(RIWAYAT_SKOR)
     print(f"Total Akumulasi Nilai Semua Pemain (Fungsi Rekursi): {total_akumulasi} Poin")
     print("="*60)
 
-# REVIEW JAWABAN PEMAIN
-def review_jawaban_pemain(daftar_soal, urutan_pilihan_diacak, jawaban_user):
+def review_jawaban_pemain(daftar_soal, jawaban_user):
     print("\n" + "-"*20 + " REVIEW EVALUASI JAWABAN " + "-"*20)
     for idx, soal in enumerate(daftar_soal):
         print(f"\nSoal {idx+1}: {soal['pertanyaan']}")
-        
+
         jawab_huruf = jawaban_user[idx]
-        pilihan_soal_ini = urutan_pilihan_diacak[idx]
-        
-        # Mapping huruf A/B/C/D kembali ke teks asli untuk di-review
+        pilihan_soal_ini = soal["pilihan"]
+
         label_map = {"A": 0, "B": 1, "C": 2, "D": 3}
         if jawab_huruf in label_map:
             teks_jawab_user = pilihan_soal_ini[label_map[jawab_huruf]]
         else:
             teks_jawab_user = "Dilewati (Belum Dijawab)"
-            
+
         print(f"  Pilihan Anda : {jawab_huruf} ({teks_jawab_user})")
         print(f"  Kunci Jawaban: {soal['jawaban']}")
-        
+
         if teks_jawab_user == soal['jawaban']:
             print("  Status       : ✅ BENAR")
         else:
@@ -221,12 +212,9 @@ def jalankan_gameplay(nama_user, kategori, level_target):
     # Mengacak urutan kemunculan soal
     daftar_soal = random.sample(master_soal, total_soal)
 
-    # LOGIKA BARU: Mengacak urutan opsi pilihan (A, B, C, D) secara dinamis untuk setiap soal
-    urutan_pilihan_diacak = []
+    # CARA 1: LANGSUNG MENGACAK ISI PILIHAN DI DICTIONARY
     for soal in daftar_soal:
-        opsi_copy = list(soal["pilihan"])
-        random.shuffle(opsi_copy)  # Mengocok isi pilihan secara random
-        urutan_pilihan_diacak.append(opsi_copy)
+        random.shuffle(soal["pilihan"])
 
     sudah_dijawab = [False] * total_soal
     jawaban_user = [None] * total_soal
@@ -243,12 +231,11 @@ def jalankan_gameplay(nama_user, kategori, level_target):
 
     while idx < total_soal:
         soal = daftar_soal[idx]
-        pilihan_sekarang = urutan_pilihan_diacak[idx]
-        
+        pilihan_sekarang = soal["pilihan"]
+
         print(f"\n[Soal {idx+1} dari {total_soal}]  |  Sisa Nyawa: {'❤️' * nyawa if nyawa > 0 else 'Mati'}")
         print(soal["pertanyaan"])
-        
-        # Tampilkan pilihan yang sudah diacak dengan label abjad dinamis
+
         labels = ["A", "B", "C", "D"]
         for i, opsi in enumerate(pilihan_sekarang):
             print(f"{labels[i]}. {opsi}")
@@ -285,15 +272,13 @@ def jalankan_gameplay(nama_user, kategori, level_target):
 
         else:
             jawaban_user[idx] = jawaban
-            
-            # Ambil nilai teks asli berdasarkan indeks abjad yang ditekan user
+
             label_map = {"A": 0, "B": 1, "C": 2, "D": 3}
             teks_pilihan_user = pilihan_sekarang[label_map[jawaban]]
-            
+
             if not sudah_dijawab[idx]:
                 sudah_dijawab[idx] = True
-                
-                # Menguji teks jawaban, bukan lagi sekadar huruf "B" kaku
+
                 if teks_pilihan_user == soal["jawaban"]:
                     print("\n>> Jawaban anda benar! <<")
                 else:
@@ -311,7 +296,7 @@ def jalankan_gameplay(nama_user, kategori, level_target):
                 else:
                     print("Status data: Salah.")
                     print(f"Jawaban benar : {soal['jawaban']}")
-            
+
             idx += 1
 
     # PROSES KALKULASI SKOR AKHIR LEVEL
@@ -320,7 +305,7 @@ def jalankan_gameplay(nama_user, kategori, level_target):
         label_map = {"A": 0, "B": 1, "C": 2, "D": 3}
         user_ans_letter = jawaban_user[i]
         if user_ans_letter in label_map:
-            if urutan_pilihan_diacak[i][label_map[user_ans_letter]] == daftar_soal[i]["jawaban"]:
+            if daftar_soal[i]["pilihan"][label_map[user_ans_letter]] == daftar_soal[i]["jawaban"]:
                 jawaban_benar_count += 1
 
     skor_akhir = int((jawaban_benar_count / total_soal) * 100) if total_soal > 0 else 0
@@ -353,7 +338,7 @@ def jalankan_gameplay(nama_user, kategori, level_target):
             print("tingkat pemahaman anda c. Tetap semangat, jangan menyerah!")
         elif nyawa == 3:
             print("Anda bisa lanjut ke level berikutnya")
-            print("tingkat pemahaman anda A. Luar biasa, pertahankan!")
+            print("tingkat pemahaman anda A. Luar biasa, pertahaman!")
         else:
             print("Anda bisa lanjut ke level berikutnya")
             print("tingkat pemahaman anda B. Sudah cukup baik!")
@@ -367,14 +352,13 @@ def jalankan_gameplay(nama_user, kategori, level_target):
             print("Mohon maaf, Anda belum berhasil melewati level penutup.")
 
     print("="*45)
-    
+
     opsi_review = input("Apakah anda ingin melihat review jawaban level ini? (Y/T): ").strip().upper()
     if opsi_review == "Y":
-        review_jawaban_pemain(daftar_soal, urutan_pilihan_diacak, jawaban_user)
-        
+        review_jawaban_pemain(daftar_soal, jawaban_user)
+
     return "LULUS" if lulus else "GAGAL"
 
-# fungsi untuk menawarkan pilihan mau lanjut ke level berikutnya atau kembali ke halaman utama
 def navigasi_setelah_kuis(status_hasil, level_aktif):
     if level_aktif == 3 and status_hasil == "LULUS":
         print("\n[1] Kembali ke Halaman Utama")
@@ -399,7 +383,7 @@ def navigasi_setelah_kuis(status_hasil, level_aktif):
             if opsi == "1": return "ULANG"
             if opsi == "2": return "HOME"
             print("Input tidak valid!")
-# ini adalah code inti program ini dimana system ini akan berjalan saat mulai pertama kali
+
 def main():
     while True:
         menu_pilihan = tampilkan_menu_utama()
