@@ -1,79 +1,79 @@
-# IT-Insight Mini Quiz
+# **IT-Insight Mini Quiz**
 
-## Deskripsi
+### **1. Identitas & Latar Belakang Proyek**
 
-Aplikasi capstone berbasis Command Line Interface (CLI) menggunakan bahasa Python bernama "IT-Insight Mini Quiz". Proyek ini dikembangkan untuk mengatasi masalah utama pelajar IT, yaitu kesenjangan teori hafalan vs praktik logika (*The Theory-Practice Gap*) dan kurangnya media evaluasi mandiri rendah tekanan (*Low-Stakes Self-Assessment*). Sistem ini mengelompokkan bank soal ke dalam 2 kategori besar dengan mekanika tingkat kesulitan berbasis pengetatan jumlah nyawa (Level 1: 4 nyawa, Level 2: 3 nyawa, Level 3: 1 nyawa). Target penggunanya adalah siswa/mahasiswa rumpun Teknologi Informasi (Pelajar IT) tingkat pemula yang ingin mengasah wawasan IT serta keterampilan pemrograman mereka, sekaligus membutuhkan alat ukur kesiapan pemahaman logika program khususnya Python.
-
----
-
-## Fitur Utama
-
-### 1. Fitur Wajib
-
-* 
-**Bank Soal:** Basis data penyimpanan soal multi-level yang menampung teks pertanyaan, pilihan ganda, dan kunci jawaban secara terstruktur.
+* **Proyek:** **IT-Insight Mini Quiz**, aplikasi kuis berbasis *Command Line Interface* (CLI) untuk evaluasi mandiri pelajar IT.
 
 
-* 
-**Quiz Random:** Sistem pengacakan otomatis untuk urutan kemunculan soal maupun opsi pilihan jawaban (A, B, C, D) agar setiap sesi kuis yang dimainkan tetap dinamis.
-
-
-* 
-**Scoring (Kalkulasi Nilai):** Perhitungan skor akhir level secara otomatis berbasis persentase total jawaban yang benar setelah sesi kuis selesai.
-
-
-* **Papan Peringkat (Leaderboard):** Fitur untuk menyusun, mengurutkan, dan menampilkan peringkat utama para pemain berdasarkan perolehan skor tertinggi.
-* **Review Jawaban:** Fasilitas pasca-kuis untuk melihat kembali evaluasi lembar jawaban pemain dan mencocokkannya secara langsung dengan kunci jawaban yang benar.
-
-### 2. Fitur Tambahan
-
-* 
-**Sistem Nyawa (Lives):** Mekanika simulasi tekanan yang membatasi toleransi kesalahan pemain berdasarkan tingkat kesulitan level (Level 1: 4 nyawa, Level 2: 3 nyawa, Level 3: 1 nyawa).
-
-
-* 
-**Fitur Kategori dan Perlevelan:** Sistem manajemen soal yang membagi kuis ke dalam 2 kategori utama (Wawasan Umum IT dan Tebak Code & Output Python) serta memetakan materi secara simetris ke dalam 3 tingkatan kesulitan (Level 1, 2, dan 3).
+* **Latar Belakang Masalah:**
+* **The Theory-Practice Gap:** Kesenjangan antara hafalan teori dasar IT dengan kemampuan implementasi logika pemrograman secara praktis.
+* **Kurangnya Media Evaluasi:** Ketiadaan media latihan mandiri dengan tekanan terkontrol (*low-stakes self-assessment*) sebelum ujian resmi.
 
 
 
----
+### **2. Solusi & Tujuan Proyek**
 
-## Cara Menjalankan
-
-1. Buka Google Colab
-2. Upload file utama Python ke dalam penyimpanan *session*
-3. Jalankan kode program langsung pada *cell* Colab
-
----
-
-## Struktur Data
-
-* 
-**Katalog Soal:** Menggunakan *Dictionary multi-level* (Nested Dictionary) dengan pencarian konstan $O(1)$ berdasarkan pencocokan *key-value* dari input menu pengguna.
+* **Penyelesaian Masalah:** Proyek ini menyediakan media latihan interaktif yang mensimulasikan tekanan akademik melalui mekanika sistem nyawa dan umpan balik instan.
+* **Tujuan Proyek:**
+* Membangun media latihan mandiri yang terstruktur untuk mengukur kesiapan akademik.
+* Mengimplementasikan konsep fondasi pemrograman Python dalam sistem yang terintegrasi.
 
 
-* **Riwayat Skor:** Menggunakan *List of Dictionary* untuk menampung seluruh data hasil pengerjaan kuis (nama, kategori, level, dan skor akhir).
-* **Kategori:** Menggunakan objek *Set* untuk membuang elemen duplikat secara otomatis dalam pengelolaan daftar pilihan kategori.
+* **Target Pengguna:** Pelajar IT tingkat pemula dan institusi pendidikan yang membutuhkan alat ukur pemahaman kurikulum.
 
----
+### **3. Cakupan Materi (Kurikulum)**
 
-## Algoritma yang Digunakan
+Proyek ini memetakan 13 Bab kurikulum fondasi pemrograman ke dalam 2 kategori kuis:
 
-* **Bubble Sort:** Digunakan untuk mengurutkan data riwayat skor secara menurun (*descending*) guna menyusun papan peringkat secara rapi.
-* **Total Skor (Rekursi):** Menggunakan fungsi rekursif fungsional untuk menghitung akumulasi total nilai keseluruhan pemain yang terdata di dalam sistem.
-* **Option Shuffling:** Mengacak urutan pilihan opsi jawaban di dalam dictionary kuis secara dinamis tanpa mengubah kunci jawaban asli.
-* 
-**Manipulasi ASCII:** Pelacakan sandi enkripsi kriptografi pergeseran bit karakter (Sandi Caesar) memanfaatkan fungsi `ord()` dan `chr()`.
+* **Bab 1–4:** *Computational Thinking*, variabel, seleksi percabangan, dan perulangan.
+* **Bab 5–8:** Fungsi, *string*, *list*, *tuple*, dan *dictionary* dasar.
+* **Bab 9–13:** *Set*, *searching* & *sorting*, rekursi lanjut, *Big-O notation*, dan *AI-augmented programming*.
+
+### **4. Konsep & Alur Sistem**
+
+* **Konsep:** Menggunakan *gamification* (sistem nyawa dan *leaderboard*) untuk meningkatkan keterlibatan pengguna dalam lingkungan CLI yang simpel namun menantang.
+* **Alur:** Pengguna melakukan registrasi, memilih kategori, melewati 3 level kesulitan dengan mekanika nyawa yang berbeda, lalu hasil akhirnya diproses ke *leaderboard*.
+
+### **5. Fitur Sistem**
+
+* **Fitur Wajib:**
+* **Bank Soal:** Basis data soal multi-level menggunakan *nested dictionary*.
+* **Quiz Random:** Pengacakan soal dan opsi jawaban (A, B, C, D) secara dinamis.
+* **Scoring:** Perhitungan skor akhir berbasis persentase jawaban benar.
+* **Leaderboard:** Menampilkan peringkat berdasarkan skor tertinggi.
+* **Review Jawaban:** Evaluasi pasca-kuis untuk mencocokkan jawaban pemain dengan kunci jawaban.
+
+
+* **Fitur Tambahan:**
+* **Sistem Nyawa:** Simulasi tekanan dengan pembatasan kesalahan (L1: 4, L2: 3, L3: 1 nyawa).
+* **Total Skor Rekursi:** Fungsi rekursif untuk mengakumulasi total poin seluruh pemain.
+* **Fitur Surrender:** Opsi untuk mengakhiri kuis secara paksa saat pengguna merasa kewalahan.
 
 
 
----
+### **6. Algoritma yang Digunakan**
+
+* **Bubble Sort:** Digunakan untuk mengurutkan data skor secara menurun (*descending*) pada *leaderboard*.
+* **Fungsi Rekursif:** Digunakan dalam modul perhitungan total akumulasi nilai seluruh pemain.
+* **Manipulasi ASCII & Pengacakan:** Menggunakan `random.shuffle()` untuk pengacakan opsi dan manipulasi data melalui fungsi `ord()` dan `chr()`.
+
+### **7. Rencana Pengembangan**
+
+Proyek ini mengikuti metodologi **SDLC Waterfall** dalam 5 fase:
+
+* **Requirement Analysis & Design:** Identifikasi kebutuhan dan perancangan arsitektur sistem.
+* **Implementation:** Penulisan kode Python untuk semua fitur.
+* **Testing & Verification:** Pengujian fungsional modul (Black-box testing).
+* **Deployment & Maintenance:** Publikasi di GitHub dan pemeliharaan bug.
+* **Timeline:** Pengembangan direncanakan berlangsung selama 4 minggu mulai dari analisis desain hingga finalisasi dokumentasi.
 
 ## Identitas
 
-* **Nama**: [Nama Anda]
-* **NIM**: [NIM Anda]
-* 
+* **Rafi Putra Arya**
+* **Raya Aulia Abdillah**
+* **Zhilal Fathurrahman**
+* **Panca PAmungkas**
+
 **Mata Kuliah**: Praktikum Fondasi Pemrograman - Media Evaluasi Mandiri Pelajar IT 
 
 
