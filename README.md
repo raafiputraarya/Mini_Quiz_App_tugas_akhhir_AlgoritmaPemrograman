@@ -69,7 +69,7 @@ Proyek ini mengikuti metodologi **SDLC Waterfall** dalam 5 fase:
 
 ## Identitas
 
-* **Rafi Putra Arya**
+* **Muhammad Raafi Putra Arya**
 * **Raya Aulia Abdillah**
 * **Zhilal Fathurrahman**
 * **Panca PAmungkas**
